@@ -47,7 +47,7 @@ public interface AnranService {
 
     public String post(String url, Map<String, Object> params) throws AnranException;
 
-    public String postJson(String url, String json) throws AnranException;
+    public String postJson(String url, String csrfToken, String session, String json) throws AnranException;
 
     public String get(String url) throws AnranException;
 
