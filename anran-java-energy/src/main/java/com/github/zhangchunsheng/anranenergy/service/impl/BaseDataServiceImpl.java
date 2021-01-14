@@ -19,8 +19,8 @@ import java.util.Map;
 public class BaseDataServiceImpl extends AnranServiceApacheHttpImpl implements BaseDataService {
 
     @Override
-    public QueryReportInfoResult queryReportInfo(String csrfToken, String startDate, String endData) throws AnranException {
-        String responseContent = this.get(String.format(this.getConfig().getEnergyBaseUrl() + AnranConstants.Url.RESOURCE_ENERGY_QUERYREPORTINFO, csrfToken, startDate, endData));
+    public QueryReportInfoResult queryReportInfo(String startDate, String endData) throws AnranException {
+        String responseContent = this.get(String.format(this.getConfig().getEnergyBaseUrl() + AnranConstants.Url.RESOURCE_ENERGY_QUERYREPORTINFO, this.getConfig().getCsrfToken(), startDate, endData));
         return QueryReportInfoResult.fromJson(responseContent);
     }
 }

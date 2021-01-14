@@ -31,7 +31,7 @@ public class BaseDataServiceImplTest extends BaseTest {
 
     @Test
     public void testQueryReportInfo() throws AnranException {
-        QueryReportInfoResult result = this.baseDataService.queryReportInfo(CSRF_TOKEN, "", "");
+        QueryReportInfoResult result = this.baseDataService.queryReportInfo("", "");
         assertEquals(true, result.isSuccess());
     }
 }

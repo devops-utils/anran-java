@@ -17,5 +17,5 @@ import java.util.Map;
  */
 public interface BaseDataService extends AnranService {
 
-    public QueryReportInfoResult queryReportInfo(String csrfToken, String startDate, String endData) throws AnranException;
+    public QueryReportInfoResult queryReportInfo(String startDate, String endData) throws AnranException;
 }
