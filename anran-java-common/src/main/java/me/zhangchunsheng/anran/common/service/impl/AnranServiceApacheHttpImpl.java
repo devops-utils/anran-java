@@ -148,6 +148,32 @@ public class AnranServiceApacheHttpImpl extends BaseServiceImpl {
         }
     }
 
+    @Override
+    public String postJson(String url, String requestStr) throws AnranException {
+        try {
+            HttpClientBuilder httpClientBuilder = this.createHttpClientBuilder();
+            HttpPost httpPost = this.createHttpPost(url, requestStr);
+            try (CloseableHttpClient httpClient = httpClientBuilder.build()) {
+                try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
+                    String responseString = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+                    this.log.info("\n【请求地址】：{}\n【请求数据】：{}\n【响应数据】：{}", url, requestStr, responseString);
+                    if (this.getConfig().isIfSaveApiData()) {
+                        anranApiData.set(new AnranApiData(url, requestStr, responseString, null));
+                    }
+                    return responseString;
+                }
+            } finally {
+                httpPost.releaseConnection();
+            }
+        } catch (Exception e) {
+            this.log.error("\n【请求地址】：{}\n【请求数据】：{}\n【异常信息】：{}", url, requestStr, e.getMessage());
+            if (this.getConfig().isIfSaveApiData()) {
+                anranApiData.set(new AnranApiData(url, requestStr, null, e.getMessage()));
+            }
+            throw new AnranException(e.getMessage(), e);
+        }
+    }
+
     private StringEntity createEntry(String requestStr) {
         try {
             return new StringEntity(new String(requestStr.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));

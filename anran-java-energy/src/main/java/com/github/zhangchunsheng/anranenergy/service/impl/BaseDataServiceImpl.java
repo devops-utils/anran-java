@@ -20,7 +20,7 @@ public class BaseDataServiceImpl extends AnranServiceApacheHttpImpl implements B
 
     @Override
     public QueryReportInfoResult queryReportInfo(String startDate, String endData) throws AnranException {
-        String responseContent = this.get(String.format(this.getConfig().getEnergyBaseUrl() + AnranConstants.Url.RESOURCE_ENERGY_QUERYREPORTINFO, this.getConfig().getCsrfToken(), startDate, endData));
+        String responseContent = this.post(this.getConfig().getEnergyBaseUrl() + AnranConstants.Url.RESOURCE_ENERGY_QUERYREPORTINFO, "");
         return QueryReportInfoResult.fromJson(responseContent);
     }
 }

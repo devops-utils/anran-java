@@ -36,9 +36,18 @@ public interface AnranService {
 
     public byte[] postForBytes(String url, String requestStr) throws AnranException;
 
+    /**
+     *
+     * @param url
+     * @param requestStr a=1&b=1
+     * @return
+     * @throws AnranException
+     */
     public String post(String url, String requestStr) throws AnranException;
 
     public String post(String url, Map<String, Object> params) throws AnranException;
+
+    public String postJson(String url, String json) throws AnranException;
 
     public String get(String url) throws AnranException;
 
