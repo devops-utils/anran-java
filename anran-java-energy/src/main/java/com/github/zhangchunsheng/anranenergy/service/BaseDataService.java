@@ -1,10 +1,8 @@
 package com.github.zhangchunsheng.anranenergy.service;
 
-import com.github.zhangchunsheng.anranenergy.bean.result.common.QueryReportInfoResult;
+import com.github.zhangchunsheng.anranenergy.bean.result.QueryReportInfoResult;
 import me.zhangchunsheng.anran.common.exception.AnranException;
 import me.zhangchunsheng.anran.common.service.AnranService;
-
-import java.util.Map;
 
 /**
  * <pre>

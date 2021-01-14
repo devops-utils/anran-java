@@ -1,6 +1,6 @@
 package com.github.zhangchunsheng.anranenergy.service.impl;
 
-import com.github.zhangchunsheng.anranenergy.bean.result.common.QueryReportInfoResult;
+import com.github.zhangchunsheng.anranenergy.bean.result.QueryReportInfoResult;
 import com.github.zhangchunsheng.anranenergy.service.BaseDataService;
 import com.github.zhangchunsheng.anranenergy.service.BaseTest;
 import com.github.zhangchunsheng.anranenergy.testbase.ApiTestModule;
@@ -9,8 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import me.zhangchunsheng.anran.common.exception.AnranException;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
-
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.*;

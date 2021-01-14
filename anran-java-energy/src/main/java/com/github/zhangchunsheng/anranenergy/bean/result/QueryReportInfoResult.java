@@ -1,4 +1,4 @@
-package com.github.zhangchunsheng.anranenergy.bean.result.common;
+package com.github.zhangchunsheng.anranenergy.bean.result;
 
 import com.github.zhangchunsheng.anranenergy.util.json.AnranGsonBuilder;
 import com.google.gson.annotations.SerializedName;
