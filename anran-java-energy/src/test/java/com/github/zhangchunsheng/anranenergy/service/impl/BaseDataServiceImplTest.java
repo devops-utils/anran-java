@@ -1,5 +1,6 @@
 package com.github.zhangchunsheng.anranenergy.service.impl;
 
+import com.github.zhangchunsheng.anranenergy.bean.request.QueryReportInfoRequest;
 import com.github.zhangchunsheng.anranenergy.bean.result.QueryReportInfoResult;
 import com.github.zhangchunsheng.anranenergy.service.BaseDataService;
 import com.github.zhangchunsheng.anranenergy.service.BaseTest;
@@ -29,7 +30,41 @@ public class BaseDataServiceImplTest extends BaseTest {
 
     @Test
     public void testQueryReportInfo() throws AnranException {
-        QueryReportInfoResult result = this.baseDataService.queryReportInfo("", "");
+        QueryReportInfoRequest queryReportInfoRequest = new QueryReportInfoRequest();
+        /*
+        * AREA_ID: "1935"
+        END_USE_DATE: "2021-01-12"
+        IS_SHARE: "3"
+        START_USE_DATE: "2021-01-11"
+        areaIdHidden: "3"
+        *
+        areaLevel: "3"
+        endRow: 40
+        page: 2
+        privCode: "A4F3D73225F9F343E0533D801DAC45B9"
+        provinceId: "1935"
+        *
+        provinceIdHidden: "1935"
+        reportId: "A4F3D73225F9F343E0533D801DAC45B9"
+        reportName: "电量计量"
+        startRow: 20*/
+        queryReportInfoRequest.setAREA_ID("1935");
+        queryReportInfoRequest.setAreaIdHidden("3");
+        queryReportInfoRequest.setSTART_USE_DATE("2021-01-10");
+        queryReportInfoRequest.setEND_USE_DATE("2021-01-11");
+        queryReportInfoRequest.setAreaLevel("3");
+
+        queryReportInfoRequest.setEndRow(20);
+        queryReportInfoRequest.setPage(1);
+        queryReportInfoRequest.setPrivCode("A4F3D73225F9F343E0533D801DAC45B9");
+        queryReportInfoRequest.setProvinceId("1935");
+        queryReportInfoRequest.setIS_SHARE("3");
+
+        queryReportInfoRequest.setProvinceIdHidden("1935");
+        queryReportInfoRequest.setReportId("A4F3D73225F9F343E0533D801DAC45B9");
+        queryReportInfoRequest.setReportName("电量计量");
+        queryReportInfoRequest.setStartRow(0);
+        QueryReportInfoResult result = this.baseDataService.queryReportInfo(queryReportInfoRequest.toString());
         assertEquals(true, result.isSuccess());
     }
 }

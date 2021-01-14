@@ -17,7 +17,7 @@ import me.zhangchunsheng.anran.common.service.impl.AnranServiceApacheHttpImpl;
 public class BaseDataServiceImpl extends AnranServiceApacheHttpImpl implements BaseDataService {
 
     @Override
-    public QueryReportInfoResult queryReportInfo(String startDate, String endData) throws AnranException {
+    public QueryReportInfoResult queryReportInfo(String json) throws AnranException {
         String responseContent = this.postJson(this.getConfig().getEnergyBaseUrl() + AnranConstants.Url.RESOURCE_ENERGY_QUERYREPORTINFO, this.getConfig().getCsrfToken(), this.getConfig().getSession(), "");
         return QueryReportInfoResult.fromJson(responseContent);
     }

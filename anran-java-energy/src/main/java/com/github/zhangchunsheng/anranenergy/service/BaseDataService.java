@@ -15,5 +15,5 @@ import me.zhangchunsheng.anran.common.service.AnranService;
  */
 public interface BaseDataService extends AnranService {
 
-    public QueryReportInfoResult queryReportInfo(String startDate, String endData) throws AnranException;
+    public QueryReportInfoResult queryReportInfo(String json) throws AnranException;
 }
