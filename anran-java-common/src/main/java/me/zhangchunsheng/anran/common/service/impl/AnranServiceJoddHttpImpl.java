@@ -66,7 +66,7 @@ public class AnranServiceJoddHttpImpl extends BaseServiceImpl {
     }
 
     @Override
-    public String postJson(String url, String requestStr) throws AnranException {
+    public String postJson(String url, String csrfToken, String session, String requestStr) throws AnranException {
         try {
             HttpRequest request = this.buildHttpRequest(url, requestStr);
             String responseString = this.getResponseString(request.send());
