@@ -3,6 +3,7 @@ package com.github.zhangchunsheng.anranenergy.bean.request;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import me.zhangchunsheng.anran.common.bean.request.BaseAnranRequest;
+import me.zhangchunsheng.anran.common.util.json.AnranGsonBuilder;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -39,4 +40,13 @@ public class QueryReportInfoRequest extends BaseAnranRequest {
     private String     reportId;
     private String     reportName;
     private int        startRow;
+
+    public static QueryReportInfoRequest fromJson(String json) {
+        return AnranGsonBuilder.create().fromJson(json, QueryReportInfoRequest.class);
+    }
+
+    @Override
+    public String toString() {
+        return AnranGsonBuilder.create().toJson(this);
+    }
 }

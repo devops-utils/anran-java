@@ -64,6 +64,7 @@ public class BaseDataServiceImplTest extends BaseTest {
         queryReportInfoRequest.setReportId("A4F3D73225F9F343E0533D801DAC45B9");
         queryReportInfoRequest.setReportName("电量计量");
         queryReportInfoRequest.setStartRow(0);
+        System.out.println(queryReportInfoRequest.toString());
         QueryReportInfoResult result = this.baseDataService.queryReportInfo(queryReportInfoRequest.toString());
         assertEquals(true, result.isSuccess());
     }
