@@ -152,6 +152,32 @@ public class AnranServiceApacheHttpImpl extends BaseServiceImpl {
     }
 
     @Override
+    public String postJson(String url, String requestStr) throws AnranException {
+        try {
+            HttpClientBuilder httpClientBuilder = this.createHttpClientBuilder();
+            HttpPost httpPost = this.createHttpPostJson(url, requestStr);
+            try (CloseableHttpClient httpClient = httpClientBuilder.build()) {
+                try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
+                    String responseString = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+                    this.log.info("\n【请求地址】：{}\n【请求数据】：{}\n【响应数据】：{}", url, requestStr, responseString);
+                    if (this.getConfig().isIfSaveApiData()) {
+                        anranApiData.set(new AnranApiData(url, requestStr, responseString, null));
+                    }
+                    return responseString;
+                }
+            } finally {
+                httpPost.releaseConnection();
+            }
+        } catch (Exception e) {
+            this.log.error("\n【请求地址】：{}\n【请求数据】：{}\n【异常信息】：{}", url, requestStr, e.getMessage());
+            if (this.getConfig().isIfSaveApiData()) {
+                anranApiData.set(new AnranApiData(url, requestStr, null, e.getMessage()));
+            }
+            throw new AnranException(e.getMessage(), e);
+        }
+    }
+
+    @Override
     public String postJson(String url, String csrfToken, String session, String requestStr) throws AnranException {
         try {
             HttpClientBuilder httpClientBuilder = this.createHttpClientBuilder();
@@ -208,6 +234,23 @@ public class AnranServiceApacheHttpImpl extends BaseServiceImpl {
     private HttpPost createHttpPost(String url, String requestStr) {
         HttpPost httpPost = new HttpPost(url);
         httpPost.setEntity(this.createEntry(requestStr));
+
+        httpPost.setConfig(RequestConfig.custom()
+                .setConnectionRequestTimeout(this.getConfig().getHttpConnectionTimeout())
+                .setConnectTimeout(this.getConfig().getHttpConnectionTimeout())
+                .setSocketTimeout(this.getConfig().getHttpTimeout())
+                .build());
+
+        return httpPost;
+    }
+
+    private HttpPost createHttpPostJson(String url, String requestStr) {
+        HttpPost httpPost = new HttpPost(url);
+        httpPost.setHeader("Content-Type", "application/json");
+        StringEntity s = new StringEntity(requestStr, "utf-8");
+        s.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,
+                "application/json"));
+        httpPost.setEntity(s);
 
         httpPost.setConfig(RequestConfig.custom()
                 .setConnectionRequestTimeout(this.getConfig().getHttpConnectionTimeout())

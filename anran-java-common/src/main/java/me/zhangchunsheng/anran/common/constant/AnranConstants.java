@@ -18,5 +18,6 @@ public class AnranConstants {
 
     public static class Url {
         public static final String RESOURCE_ENERGY_QUERYREPORTINFO = "/energy/reportToolController/queryReportInfo";
+        public static final String RESOURCE_DINGTALK_ROBOT_SEND = "/robot/send?access_token=%s";
     }
 }

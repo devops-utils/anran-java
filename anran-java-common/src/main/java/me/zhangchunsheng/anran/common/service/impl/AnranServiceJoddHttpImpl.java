@@ -66,6 +66,24 @@ public class AnranServiceJoddHttpImpl extends BaseServiceImpl {
     }
 
     @Override
+    public String postJson(String url, String requestStr) throws AnranException {
+        try {
+            HttpRequest request = this.buildHttpRequest(url, requestStr);
+            String responseString = this.getResponseString(request.send());
+
+            this.log.info("\n【请求地址】：{}\n【请求数据】：{}\n【响应数据】：{}", url, requestStr, responseString);
+            if (this.getConfig().isIfSaveApiData()) {
+                anranApiData.set(new AnranApiData(url, requestStr, responseString, null));
+            }
+            return responseString;
+        } catch (Exception e) {
+            this.log.error("\n【请求地址】：{}\n【请求数据】：{}\n【异常信息】：{}", url, requestStr, e.getMessage());
+            anranApiData.set(new AnranApiData(url, requestStr, null, e.getMessage()));
+            throw new AnranException(e.getMessage(), e);
+        }
+    }
+
+    @Override
     public String postJson(String url, String csrfToken, String session, String requestStr) throws AnranException {
         try {
             HttpRequest request = this.buildHttpRequest(url, requestStr);

@@ -19,6 +19,9 @@ import lombok.Data;
 public abstract class BaseAnranResult implements Serializable {
     private static final long serialVersionUID = 2020652152604850904L;
     protected boolean isSuccess;
+    //{"errcode":0,"errmsg":"ok"}
+    protected int errcode;
+    protected String errmsg;
 
     /**
      * 请求是否成功.

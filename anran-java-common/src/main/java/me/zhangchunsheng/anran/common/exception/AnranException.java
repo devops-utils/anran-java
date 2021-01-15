@@ -72,9 +72,9 @@ public class AnranException extends Exception {
      */
     public static AnranException from(BaseAnranResult baseResult) {
         return AnranException.newBuilder()
-                .returnStatus("")
-                .returnMsg("")
-                .returnCode(0)
+                .returnStatus(baseResult.isSuccess() ? "1" : "0")
+                .returnMsg(baseResult.getErrmsg())
+                .returnCode(baseResult.getErrcode())
                 .build();
     }
 

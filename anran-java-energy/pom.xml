@@ -11,7 +11,7 @@
 
   <artifactId>anran-java-energy</artifactId>
   <name>AnranJava - Energy Java SDK</name>
-  <description>电费网约车 Java SDK</description>
+  <description>钉钉 Java SDK</description>
 
   <dependencies>
     <dependency>

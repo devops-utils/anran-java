@@ -36,6 +36,7 @@
   <modules>
     <module>anran-java-common</module>
     <module>anran-java-energy</module>
+    <module>anran-java-dingtalk</module>
     <module>spring-boot-starters</module>
   </modules>
 

@@ -1,14 +1,9 @@
-package me.zhangchunsheng.anran.common.config;
+package com.github.zhangchunsheng.anrandingtalk.config;
 
 import lombok.Data;
-import org.apache.commons.io.IOUtils;
+import lombok.EqualsAndHashCode;
+import me.zhangchunsheng.anran.common.config.AnranConfig;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.ssl.SSLContexts;
-
-import javax.net.ssl.SSLContext;
-import java.io.*;
-import java.net.URL;
-import java.security.KeyStore;
 
 /**
  * 电费配置
@@ -16,8 +11,9 @@ import java.security.KeyStore;
  * @author Chunsheng Zhang (https://github.com/zhangchunsheng)
  */
 @Data
-public class AnranConfig {
-    protected static final String DEFAULT_BASE_URL = "http://180.153.49.94:50080";
+@EqualsAndHashCode(callSuper = true)
+public class DingtalkConfig extends AnranConfig {
+    protected static final String DEFAULT_BASE_URL = "https://oapi.dingtalk.com";
 
     /**
      * 电费接口请求地址域名部分.
@@ -37,17 +33,7 @@ public class AnranConfig {
     /**
      * http请求数据读取等待时间.
      */
-    private int httpTimeout = 20000;
-
-    /**
-     * 电费csrfToken.
-     */
-    private String csrfToken;
-
-    /**
-     * 电费session.
-     */
-    private String session;
+    private int httpTimeout = 10000;
 
     /**
      * accessToken.
