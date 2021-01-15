@@ -42,4 +42,19 @@ public class RobotServiceImplTest extends BaseTest {
         SendResult result = this.robotService.send(sendRequest.toString());
         System.out.println(result.toString());
     }
+
+    @Test
+    public void testSend2021() throws AnranException {
+        SendRequest sendRequest = new SendRequest();
+        /*
+         * {"msgtype": "text","text": {"content": "我就是我, 是不一样的烟火"}}*/
+        sendRequest.setMsgtype("text");
+        SendRequest.Text text = new SendRequest.Text();
+        text.setContent("2021年我就是我, 是不一样的烟火");
+        sendRequest.setText(text);
+        System.out.println(sendRequest.toString());
+        //{"isSuccess":false,"errcode":400201,"errmsg":"miss param : text"}
+        SendResult result = this.robotService.send(sendRequest.toString());
+        System.out.println(result.toString());
+    }
 }
