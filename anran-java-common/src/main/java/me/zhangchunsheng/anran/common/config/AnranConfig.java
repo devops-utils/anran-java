@@ -37,7 +37,7 @@ public class AnranConfig {
     /**
      * http请求数据读取等待时间.
      */
-    private int httpTimeout = 10000;
+    private int httpTimeout = 20000;
 
     /**
      * 电费csrfToken.
