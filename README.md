@@ -4,12 +4,19 @@
 ### 使用SDK
 ```java
 // spring boot, inject service
+SendResult result = this.robotService.send(sendRequest.toString());
 ```
 ### Maven 引用方式
 ```xml
 <dependency>
     <groupId>com.github.zhangchunsheng</groupId>
     <artifactId>anran-java-energy</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+<dependency>
+    <groupId>com.github.zhangchunsheng</groupId>
+    <artifactId>anran-java-dingtalk</artifactId>
     <version>1.0.0</version>
 </dependency>
 ```
