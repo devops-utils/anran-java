@@ -1,6 +1,8 @@
 package com.github.zhangchunsheng.anranenergy.service.impl;
 
+import com.github.zhangchunsheng.anranenergy.bean.request.GetReportConfigInfoRequest;
 import com.github.zhangchunsheng.anranenergy.bean.request.QueryReportInfoRequest;
+import com.github.zhangchunsheng.anranenergy.bean.result.GetReportConfigInfoResult;
 import com.github.zhangchunsheng.anranenergy.bean.result.QueryReportInfoResult;
 import com.github.zhangchunsheng.anranenergy.service.BaseDataService;
 import com.github.zhangchunsheng.anranenergy.service.BaseTest;
@@ -66,6 +68,18 @@ public class BaseDataServiceImplTest extends BaseTest {
         queryReportInfoRequest.setStartRow(0);
         System.out.println(queryReportInfoRequest.toString());
         QueryReportInfoResult result = this.baseDataService.queryReportInfo(queryReportInfoRequest.toString());
+        assertEquals(true, result.isSuccess());
+    }
+
+    @Test
+    public void testQetReportConfigInfo() throws AnranException {
+        GetReportConfigInfoRequest getReportConfigInfoRequest = new GetReportConfigInfoRequest();
+        /*
+         * reportId: "A4F3D73225F9F343E0533D801DAC45B9"
+         * */
+        getReportConfigInfoRequest.setReportId("A4F3D73225F9F343E0533D801DAC45B9");
+        System.out.println(getReportConfigInfoRequest.toString());
+        GetReportConfigInfoResult result = this.baseDataService.getReportConfigInfo(getReportConfigInfoRequest.toString());
         assertEquals(true, result.isSuccess());
     }
 }
