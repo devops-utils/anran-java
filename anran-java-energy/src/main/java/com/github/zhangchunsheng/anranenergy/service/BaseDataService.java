@@ -1,5 +1,6 @@
 package com.github.zhangchunsheng.anranenergy.service;
 
+import com.github.zhangchunsheng.anranenergy.bean.result.GetReportConfigInfoResult;
 import com.github.zhangchunsheng.anranenergy.bean.result.QueryReportInfoResult;
 import me.zhangchunsheng.anran.common.exception.AnranException;
 import me.zhangchunsheng.anran.common.service.AnranService;
@@ -16,4 +17,6 @@ import me.zhangchunsheng.anran.common.service.AnranService;
 public interface BaseDataService extends AnranService {
 
     public QueryReportInfoResult queryReportInfo(String json) throws AnranException;
+
+    public GetReportConfigInfoResult getReportConfigInfo(String json) throws AnranException;
 }

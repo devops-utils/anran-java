@@ -1,5 +1,6 @@
 package com.github.zhangchunsheng.anranenergy.service.impl;
 
+import com.github.zhangchunsheng.anranenergy.bean.result.GetReportConfigInfoResult;
 import com.github.zhangchunsheng.anranenergy.bean.result.QueryReportInfoResult;
 import com.github.zhangchunsheng.anranenergy.service.BaseDataService;
 import me.zhangchunsheng.anran.common.constant.AnranConstants;
@@ -20,5 +21,11 @@ public class BaseDataServiceImpl extends AnranServiceApacheHttpImpl implements B
     public QueryReportInfoResult queryReportInfo(String json) throws AnranException {
         String responseContent = this.postJson(this.getConfig().getEnergyBaseUrl() + AnranConstants.Url.RESOURCE_ENERGY_QUERYREPORTINFO, this.getConfig().getCsrfToken(), this.getConfig().getSession(), json);
         return QueryReportInfoResult.fromJson(responseContent);
+    }
+
+    @Override
+    public GetReportConfigInfoResult getReportConfigInfo(String json) throws AnranException {
+        String responseContent = this.postJson(this.getConfig().getEnergyBaseUrl() + AnranConstants.Url.RESOURCE_ENERGY_GETREPORTCONFIGINFO, this.getConfig().getCsrfToken(), this.getConfig().getSession(), json);
+        return GetReportConfigInfoResult.fromJson(responseContent);
     }
 }
