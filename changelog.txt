@@ -3,3 +3,6 @@
 
 2021-01-15
 1. add dingtalk sdk
+
+2021-01-22
+1. add energy getReportConfigInfo
